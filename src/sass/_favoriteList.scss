@@ -1,0 +1,150 @@
+@use './variables' as vars;
+
+// Favorites container: remove flex space-between (arrows are absolute)
+.favorites {
+  padding-bottom: 13px;
+  width: 280px;
+  position: relative;
+  margin: 0 auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.favorites-list {
+  display: flex;
+  justify-content: left;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 220px;
+  height: 28px;
+}
+
+.favorites-list__item {
+  height: 27px;
+  background-color: rgba(16, 33, 54, 0.5);
+  display: flex;
+  justify-content: space-between;
+  border-radius: 12px;
+  margin-right: 10px;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  }
+}
+
+.favorites-list__item-link {
+  padding-left: 14px;
+  padding-right: 12px;
+  font-size: 14px;
+  line-height: 27px;
+  text-transform: capitalize;
+  display: block;
+  text-align: center;
+  color: #ffffff;
+  font-family: 'Lato', sans-serif;
+  text-decoration: underline;
+  cursor: pointer;
+  overflow: hidden;
+}
+.favorites-list__item-close {
+  width: 24px;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  font-size: 0;
+  background-image: url(../assets/icons/close.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 12px;
+  cursor: pointer;
+  outline: none;
+}
+
+// Shared arrow button base
+.favorite-next,
+.favorite-prev {
+  background: #ff8c32;
+  backdrop-filter: blur(2px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 32px;
+  height: 32px;
+  outline: none;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.favorite-next {
+  right: 0;
+  background-image: url(../assets/icons/arrowRight.svg);
+  background-size: 18px 18px;
+  filter: brightness(0) invert(1);
+}
+
+.favorite-prev {
+  left: 0;
+  background-image: url(../assets/icons/arrowRight.svg);
+  background-size: 18px 18px;
+  transform: rotate(180deg);
+  filter: brightness(0) invert(1);
+}
+
+.favorite-next:hover:not(.is-disabled),
+.favorite-prev:hover:not(.is-disabled),
+.favorite-next:focus-visible:not(.is-disabled),
+.favorite-prev:focus-visible:not(.is-disabled) {
+  background: linear-gradient(
+    135deg,
+    rgba(60, 80, 105, 0.95),
+    rgba(38, 52, 70, 0.95)
+  );
+  transform: scale(1.12);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.55);
+}
+
+.favorite-next:active:not(.is-disabled),
+.favorite-prev:active:not(.is-disabled) {
+  transform: scale(0.95);
+}
+
+.favorite-next.is-disabled,
+.favorite-prev.is-disabled {
+  opacity: 0.25;
+  pointer-events: none;
+  filter: grayscale(100%) brightness(0.85) contrast(80%);
+}
+
+@media (min-width: 768px) {
+  .favorites {
+    justify-content: left;
+    width: 500px;
+    margin: 0 auto;
+  }
+  .favorites-list {
+    width: 575px;
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+}
+@media (min-width: 1280px) {
+  .favorites {
+    width: 650px;
+  }
+
+  .favorites-list {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+}

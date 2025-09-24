@@ -1,0 +1,94 @@
+@use './variables' as vars;
+@use './common';
+@use './five-days';
+@use './weather';
+@use './currentDate';
+@use './searchForm';
+@use './cube';
+@use './background';
+@use './favoriteList';
+@use './chart';
+@use './loader';
+
+.search-form {
+  display: flex;
+  justify-content: center;
+}
+
+.search-form input {
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  /* Allow vertical scroll; hide horizontal overflow to prevent chart wide canvas issues */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* View-state: when on Today view and content fits, hide scrollbar entirely */
+body.view-today {
+  overflow-y: hidden;
+}
+
+/* View-state: Five Days default does not scroll until content expands */
+body.view-five {
+  overflow-y: hidden;
+}
+
+/* When Five Days content grows (more-info, chart, or future map), enable scroll */
+body.content-expanded {
+  overflow-y: auto;
+}
+
+/* Limit background panels only to major card containers (exclude icon wrappers) */
+.card,
+.more-info {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition:
+    background var(--transition-theme),
+    border-color var(--transition-theme),
+    color var(--transition-theme);
+}
+
+/* Reset previously inherited styles on weather icon wrapper & sun details */
+.weather-info__weather,
+.sun-details {
+  background: transparent;
+  border: none;
+}
+
+/* Search form kept structurally transparent (input already styled separately) */
+.search-form {
+  background: transparent;
+  border: none;
+}
+
+/* Action buttons: keep minimal style; remove panel-like background */
+.card__button,
+.search-form__location-btn,
+.search-form__favorite {
+  background: transparent;
+  color: var(--color-text);
+  border: none;
+  box-shadow: none;
+}
+
+/* Provide hover focus feedback without heavy container */
+.search-form__location-btn:hover .search-form__location,
+.search-form__location-btn:focus .search-form__location,
+.search-form__favorite:hover .favorite-icon,
+.search-form__favorite:focus .favorite-icon {
+  filter: brightness(1.2);
+}
+
+.temperatures__label,
+.current-temperature,
+.degrees-max,
+.degrees-min {
+  color: var(--color-accent);
+}

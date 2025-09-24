@@ -1,0 +1,128 @@
+@use './variables' as vars;
+
+// Overlay layout: absolute positioned buttons over the input
+.search-form {
+  position: relative;
+  text-align: center;
+  padding-top: 28px;
+  margin-bottom: 10px;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__location-btn,
+  &__favorite {
+    position: absolute;
+    top: 39px; // legacy vertical alignment
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 48px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  &__location-btn {
+    left: 15px;
+  }
+  &__favorite {
+    right: 15px;
+  }
+  // Removed obsolete .is-loading (JS uses .is-detecting)
+  // Added state used in JS when detecting geolocation
+  &__location-btn.is-detecting {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  &__location {
+    display: block;
+  }
+}
+
+// Standalone input with internal padding for overlay buttons
+#search-input {
+  width: 280px;
+  height: 48px;
+  border-radius: 30px;
+  padding-left: 60px; // room for left button
+  padding-right: 60px; // room for right button
+  outline: none;
+  border: none;
+  color: black;
+  font-size: vars.$font-size-14;
+  font-family: vars.$main-font;
+  font-weight: vars.$font-weight-400;
+  background-color: vars.$main-text-color;
+
+  &::placeholder {
+    color: black;
+    font-size: vars.$font-size-14;
+    font-family: vars.$main-font;
+    font-weight: vars.$font-weight-400;
+  }
+}
+
+.search-form__location {
+  fill: #7e8691;
+  width: 20px;
+  height: 20px;
+}
+
+.search-form__location:hover,
+.search-form__location:focus,
+.search-form__location:active {
+  fill: vars.$degrees-color;
+}
+
+.favorite-icon {
+  fill: #7e8691;
+  width: 20px;
+  height: 20px; // slightly smaller for optical balance vs location icon whitespace
+}
+
+.favorite-icon:hover,
+.favorite-icon:focus,
+.favorite-icon:active {
+  fill: vars.$degrees-color;
+}
+
+@media screen and (min-width: 768px) {
+  .search-form {
+    width: 704px;
+  }
+  #search-input {
+    width: 704px;
+    font-size: vars.$font-size-18;
+    &::placeholder {
+      font-size: vars.$font-size-18;
+    }
+  }
+  .search-form__location-btn {
+    left: 20px;
+  }
+  .search-form__favorite {
+    right: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .search-form {
+    width: 822px;
+  }
+  #search-input {
+    width: 822px;
+    font-size: vars.$font-size-18;
+    &::placeholder {
+      font-size: vars.$font-size-18;
+    }
+  }
+  .search-form__location-btn {
+    left: 20px;
+  }
+  .search-form__favorite {
+    right: 20px;
+  }
+}

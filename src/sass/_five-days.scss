@@ -1,0 +1,367 @@
+@use './variables' as vars;
+
+.five-days-section {
+  border-radius: 34px;
+  background: rgba(16, 33, 54, 0.8);
+  box-shadow: 0 5px 33px 0 rgba(16, 33, 54, 0.6);
+  max-width: 280px;
+  margin: 0 auto;
+  margin-top: 32px;
+  &__title {
+    margin: 0;
+    color: vars.$main-text-color;
+    text-align: center;
+    font-family: vars.$main-font;
+    font-size: vars.$font-size-18;
+    font-weight: vars.$font-weight-700;
+    padding-top: 32px;
+    text-transform: capitalize;
+  }
+}
+
+/* Space between chart controls (Show Chart button) and the cards container */
+.five-days-header {
+  margin-bottom: 10px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Allow content to define scroll; avoid clipping when panels expand */
+  overflow: visible;
+  /* Removed margin-left:7px to allow true horizontal centering */
+  gap: 10px;
+}
+
+// Fluid centering: full width with max limit; evenly spaced in the center
+.days-cards {
+  display: flex;
+  /* Allow cards to overflow vertically if needed (e.g., focus outlines) */
+  overflow: visible;
+  gap: 10px;
+  align-self: baseline;
+  width: 100%;
+  max-width: 260px; // 5*44 + 4*10
+  margin: 0 auto;
+  transition:
+    transform 1s ease-in-out,
+    opacity 400ms ease-in-out;
+  justify-content: center;
+}
+
+.card {
+  width: 44px; /* adjusted from 65px so 5 cards + gaps fit in 280px container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  &:focus,
+  &:hover,
+  &:active,
+  &.selected {
+    cursor: pointer;
+    background: #ffffff1a;
+    border-radius: 25px;
+  }
+  &__name {
+    color: vars.$main-text-color;
+    text-align: center;
+    font-family: vars.$main-font;
+    font-size: 12px;
+    font-weight: vars.$font-weight-400;
+    letter-spacing: 0.48px;
+    margin: 0;
+    padding-top: 20px;
+  }
+  &__date {
+    color: vars.$main-text-color;
+    text-align: center;
+    font-family: vars.$main-font;
+    font-size: 16px;
+    font-weight: vars.$font-weight-400;
+    letter-spacing: 0.64px;
+    margin: 0;
+    padding-top: 8px;
+    padding-bottom: 4px;
+  }
+  &__button {
+    color: vars.$main-text-color;
+    text-align: center;
+    font-family: vars.$main-font;
+    font-size: 12px;
+    font-weight: vars.$font-weight-700;
+    text-decoration-line: underline;
+    background: none;
+    border: none;
+    opacity: 0.3;
+    &:hover {
+      color: vars.$degrees-color;
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}
+
+.temperatures {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 4px;
+  gap: 4px;
+  &__item:last-child {
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 4px;
+  }
+  &__label {
+    color: vars.$secondary-text-color;
+    text-align: center;
+    font-family: vars.$main-font;
+    font-size: 12px;
+    font-weight: vars.$font-weight-400;
+  }
+  &__item {
+    color: vars.$degrees-color;
+    text-align: center;
+    font-family: vars.$main-font;
+    font-size: 14px;
+    font-weight: vars.$font-weight-400;
+    /* Removed incomplete border-left (no line style). Add back explicitly if design needs dividers. */
+  }
+}
+
+.more-info-container {
+  /* Symmetric centering: width limited like .days-cards */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  padding-top: 20px;
+  gap: 25px;
+  padding-bottom: 20px;
+  /* equal lateral spacing = gap value */
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 100%;
+  justify-content: center; /* center when free space exists; auto scroll keeps left edge on narrow screens */
+  flex-wrap: nowrap; /* keep all cards on one line */
+  overflow-x: auto; /* allow scrolling instead of wrapping */
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+  /* Restrict transition scope (was: all 1s ease-in-out) */
+  transition:
+    transform 1s ease-in-out,
+    opacity 400ms ease-in-out;
+}
+
+.more-info {
+  width: 120px;
+  height: 217px;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+  }
+  &__hour {
+    margin: 0;
+    color: vars.$main-text-color;
+    text-align: center;
+    font-family: vars.$main-font;
+    font-size: vars.$font-size-14;
+    font-weight: vars.$font-weight-400;
+    opacity: 0.54;
+    padding-top: 20px;
+  }
+  &__temperature {
+    margin: 0;
+    color: vars.$degrees-color;
+    text-align: center;
+    font-family: vars.$main-font;
+    font-size: vars.$font-size-18;
+    font-weight: vars.$font-weight-700;
+  }
+}
+
+.details-list {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  &__item {
+    display: flex;
+    gap: 10px;
+    color: vars.$main-text-color;
+    font-family: vars.$main-font;
+    font-size: vars.$font-size-14;
+    font-weight: vars.$font-weight-400;
+    opacity: 0.54;
+    align-items: center;
+  }
+  &__icon {
+    fill: rgba(255, 255, 255, 1);
+  }
+}
+
+.buttons-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: flex;
+  gap: 50px;
+}
+
+.arrow {
+  fill: rgba(255, 255, 255, 1);
+  &:hover {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .days-cards {
+    gap: 12px;
+    width: 100%;
+    max-width: 603px; // 5*111 + 4*12
+    justify-content: center;
+  }
+  .five-days-section {
+    max-width: 704px;
+    background: none;
+    box-shadow: none;
+    &__title {
+      padding-top: 0;
+      font-size: 28px;
+      letter-spacing: 1.12px;
+      padding-bottom: 24px;
+    }
+  }
+  .cards {
+    border-radius: 34px;
+    background: rgba(16, 33, 54, 0.8);
+    box-shadow: 0 5px 33px 0 rgba(16, 33, 54, 0.6);
+  }
+  .card {
+    width: 111px;
+    cursor: pointer;
+    &__name {
+      padding-top: 40px;
+      font-size: vars.$font-size-14;
+      letter-spacing: 0.56px;
+    }
+    &__date {
+      font-size: vars.$font-size-18;
+      letter-spacing: 0.72px;
+    }
+    &__button {
+      font-size: vars.$font-size-14;
+      padding-bottom: 40px;
+    }
+  }
+  .temperatures {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 12px;
+    &__item:last-child {
+      padding-left: 12px;
+    }
+    &__label {
+      font-size: vars.$font-size-14;
+    }
+    &__item {
+      font-size: vars.$font-size-18;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+  .more-info-container {
+    gap: 20px;
+    padding-bottom: 20px;
+    padding-top: 0;
+    padding-left: 20px; /* match gap for symmetric edges */
+    padding-right: 20px;
+    width: 100%;
+    justify-content: center; /* center row on tablet when it fits */
+  }
+  .more-info__temperature {
+    font-size: vars.$font-size-18;
+  }
+  .buttons-container {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .five-days-section {
+    max-width: 1248px;
+    height: 307px;
+    margin-top: 10px;
+    &__title {
+      padding-bottom: 32px;
+    }
+  }
+  .cards {
+    gap: 32px;
+  }
+  .days-cards {
+    gap: 30px;
+    width: 100%;
+    max-width: 1025px; // 5*181 + 4*30
+    justify-content: center;
+  }
+  .card {
+    width: 181px;
+    &__name {
+      font-size: vars.$font-size-18;
+      letter-spacing: 0.72px;
+      padding-bottom: 8px;
+    }
+    &__date {
+      font-size: vars.$font-size-25;
+      letter-spacing: 1px;
+      padding-bottom: 20px;
+    }
+    &__button {
+      font-size: vars.$font-size-14;
+      padding-bottom: 40px;
+    }
+  }
+  .temperatures {
+    padding-top: 32px;
+    padding-bottom: 8px;
+    gap: 30px;
+    &__item:last-child {
+      padding-left: 30px;
+    }
+    &__label {
+      font-size: vars.$font-size-18;
+    }
+    &__item {
+      font-size: vars.$font-size-25;
+    }
+  }
+  .more-info-container {
+    gap: 24px;
+    padding-bottom: 20px;
+    padding-left: 24px; /* match gap for symmetric edges */
+    padding-right: 24px;
+    justify-content: center; /* center row on desktop when it fits */
+    width: 100%;
+  }
+  .more-info {
+    width: 152px;
+    height: 217px;
+    &__temperature {
+      font-size: 25px;
+    }
+  }
+}

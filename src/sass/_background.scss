@@ -1,0 +1,12 @@
+@use './variables' as vars;
+
+.backgroundImage {
+  width: 100%;
+  /* Fill the viewport at minimum, but grow with content when needed */
+  min-height: 100vh;
+  height: auto;
+  position: relative; /* allow fixed/absolute children to anchor relative to background */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

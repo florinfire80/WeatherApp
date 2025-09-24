@@ -1,0 +1,33 @@
+$main-font: 'Lato';
+$main-text-color: #ffffff;
+$secondary-text-color: #767d85;
+$degrees-color: #ff6b09;
+$background: #102136cc;
+$font-size-14: 14px;
+$font-size-18: 18px;
+$font-size-16: 16px;
+$font-size-25: 25px;
+$font-weight-400: 400;
+$font-weight-700: 700;
+
+// CSS variable bridge (light theme defaults)
+:root {
+  --color-bg: #102136cc;
+  --color-surface: #1c3147;
+  --color-surface-alt: #25405c;
+  --color-text: #ffffff;
+  --color-text-secondary: #767d85;
+  --color-accent: #ff6b09;
+  --color-border: rgba(255, 255, 255, 0.15);
+  --transition-theme: 250ms ease;
+}
+
+// [data-theme='dark'] {
+//   --color-bg: #0b1622;
+//   --color-surface: #142231;
+//   --color-surface-alt: #1d3449;
+//   --color-text: #e5ecf2;
+//   --color-text-secondary: #93a1af;
+//   --color-accent: #ff8c32;
+//   --color-border: rgba(255, 255, 255, 0.25);
+// }

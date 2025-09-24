@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Weather App" />
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="preloader" style="opacity: 1">
+      <div class="loaderRain">
+        <span class="drop"></span>
+        <span class="drop"></span>
+        <span class="drop"></span>
+        <span class="drop"></span>
+        <span class="drop"></span>
+        <span class="drop"></span>
+        <span class="drop"></span>
+        <span class="drop"></span>
+        <span class="drop"></span>
+        <span class="drop"></span>
+      </div>
+
+      <div class="text">LOOKING OUTSIDE FOR YOU... ONE SEC</div>
+    </div>
+    <div class="backgroundImage is-hidden">
+      <div
+        class="container"
+        style="min-height: 100vh; display: flex; flex-direction: column"
+      >
+        <!-- Live region removed: relying solely on visual Notiflix/toast messages -->
+        <form class="search-form" id="search-form">
+          <button
+            type="button"
+            id="locate-me"
+            class="search-form__location-btn"
+          >
+            <svg class="search-form__location" height="22" width="22">
+              <use
+                href="./assets/icons/symbol-defs.svg#icon-icon-location"
+              ></use>
+            </svg>
+          </button>
+
+          <input
+            id="search-input"
+            type="text"
+            value=""
+            name="city"
+            style="text-transform: capitalize"
+            placeholder="Enter the city"
+          />
+          <span class="loader is-hidden"></span>
+          <button class="search-form__favorite" type="button">
+            <svg class="favorite-icon" height="22" width="22">
+              <use href="./assets/icons/symbol-defs.svg#icon-star"></use>
+            </svg>
+          </button>
+        </form>
+        <div class="favorites">
+          <button class="list-button favorite-prev"></button>
+          <ul class="favorites-list"></ul>
+          <button class="list-button favorite-next"></button>
+        </div>
+        <div class="cube-first"></div>
+        <div class="cube-second"></div>
+        <include src="./partials/today.html"></include>
+        <include src="./partials/five-days.html"></include>
+        <include src="./partials/chart.html"></include>
+      </div>
+    </div>
+    <!-- Single consolidated module entry -->
+    <script src="./index.js" type="module"></script>
+  </body>
+</html>

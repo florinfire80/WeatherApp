@@ -1,0 +1,4 @@
+# Keep build outputs and caches out of Prettier
+.dist
+.parcel-cache
+node_modules
