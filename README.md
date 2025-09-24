@@ -36,8 +36,8 @@ npm install
 # Create a .env file (see Environment variables below) then start the dev server
 npm run start
 ```
-[![Deploy to GitHub Pages](https://github.com/florinfire80/WeatherApp/actions/workflows/deploy.yml/badge.svg)](https://github.com/florinfire80/WeatherApp/actions/workflows/deploy.yml)
 
+[![Deploy to GitHub Pages](https://github.com/florinfire80/WeatherApp/actions/workflows/deploy.yml/badge.svg)](https://github.com/florinfire80/WeatherApp/actions/workflows/deploy.yml)
 
 Build for production:
 
@@ -88,7 +88,8 @@ printf "PARCEL_OPENWEATHER_API_KEY=YOUR_KEY\nPARCEL_PIXABAY_API_KEY=YOUR_KEY\n" 
 
 ### GitHub Pages deployment settings
 
-This repo uses GitHub Actions to build and deploy to Pages on every push to `main`.
+This repo uses GitHub Actions to build and deploy to Pages on every push to
+`main`.
 
 - Add repository secrets (Settings → Secrets and variables → Actions):
   - `PARCEL_OPENWEATHER_API_KEY` (required)
