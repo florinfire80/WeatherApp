@@ -77,6 +77,8 @@ typings/
 .env
 .env.test
 .env.*
+# Keep the example template in version control
+!.env.example
 
 # parcel-bundler cache (https://parceljs.org/)
 .parcel-cache
